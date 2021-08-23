@@ -1,0 +1,14 @@
+{
+  "moduleDirectories": ["node_modules", "src"],
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "./",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-test.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@common/(.*)": "<rootDir>/src/modules/common/$1",
+    "@book/(.*)": "<rootDir>/src/modules/book/$1"
+  }
+}

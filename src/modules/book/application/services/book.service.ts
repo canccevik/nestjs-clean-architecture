@@ -10,6 +10,7 @@ export class BookService {
   ) {}
 
   async createBook(book: CreateBookDTO) {
-    return this.bookRepository.create(book)
+    const createdBook = await this.bookRepository.create(book)
+    return { book: createdBook }
   }
 }
