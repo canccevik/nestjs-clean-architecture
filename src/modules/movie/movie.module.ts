@@ -1,13 +1,21 @@
 import { Module } from '@nestjs/common'
+import { CqrsModule } from '@nestjs/cqrs'
 import { MongooseModule } from '@nestjs/mongoose'
+import { MovieCommandHandlers } from './application/commands'
 import { Movie, MovieSchema } from './domain/models/movie.model'
 import { AbstractMovieRepository } from './domain/repositories/movie.repository'
 import { MovieRepository } from './infrastructure/repositories/movie.repository'
+import { MovieController } from './presentation/controllers/movie.controller'
 
 @Module({
   imports: [
+    CqrsModule,
     MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }])
   ],
-  providers: [{ provide: AbstractMovieRepository, useClass: MovieRepository }]
+  controllers: [MovieController],
+  providers: [
+    { provide: AbstractMovieRepository, useClass: MovieRepository },
+    ...MovieCommandHandlers
+  ]
 })
 export class MovieModule {}

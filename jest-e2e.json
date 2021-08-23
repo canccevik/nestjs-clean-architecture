@@ -9,6 +9,7 @@
   },
   "moduleNameMapper": {
     "@common/(.*)": "<rootDir>/src/modules/common/$1",
-    "@book/(.*)": "<rootDir>/src/modules/book/$1"
+    "@book/(.*)": "<rootDir>/src/modules/book/$1",
+    "@movie/(.*)": "<rootDir>/src/modules/movie/$1"
   }
 }
