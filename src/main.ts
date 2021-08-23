@@ -10,6 +10,7 @@ import { useContainer } from 'class-validator'
 
 import helmet from 'helmet'
 import compression from 'compression'
+import morgan from 'morgan'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -26,6 +27,7 @@ async function bootstrap() {
 
   app.use(helmet())
   app.use(compression())
+  app.use(morgan('tiny'))
 
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalFilters(new HttpExceptionFilter())
