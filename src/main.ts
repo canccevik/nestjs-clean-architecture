@@ -4,6 +4,9 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { AppModule } from './app.module'
 
+import helmet from 'helmet'
+import compression from 'compression'
+
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     cors: true
@@ -14,6 +17,9 @@ async function bootstrap() {
   const globalPrefix = configService.get('globalPrefix')
 
   app.setGlobalPrefix(globalPrefix)
+
+  app.use(helmet())
+  app.use(compression())
 
   const appName = configService.get('appName')
   const appDescription = configService.get('appDescription')
