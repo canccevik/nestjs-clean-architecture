@@ -2,7 +2,8 @@
   "compilerOptions": {
     "paths": {
       "@common/*": ["src/modules/common/*"],
-      "@book/*": ["src/modules/book/*"]
+      "@book/*": ["src/modules/book/*"],
+      "@movie/*": ["src/modules/movie/*"]
     },
     "module": "CommonJS",
     "declaration": true,

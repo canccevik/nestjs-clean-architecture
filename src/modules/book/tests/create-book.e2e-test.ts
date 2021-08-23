@@ -25,12 +25,12 @@ describe('Book Controller - [POST] /books', () => {
       author: 'Katie Mack'
     }
 
-    const { body } = await request
+    const createdBookResponse = await request
       .post('/books')
       .send(book)
       .expect(HttpStatus.CREATED)
 
-    const createdBook = body.payload.book
+    const createdBook = createdBookResponse.body.payload.book
 
     expect(createdBook).toEqual({
       _id: createdBook._id,
