@@ -13,4 +13,9 @@ export class BookService {
     const createdBook = await this.bookRepository.create(book)
     return { book: createdBook }
   }
+
+  async getBooks() {
+    const books = await this.bookRepository.find({})
+    return { books }
+  }
 }
