@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsMongoId, IsNotEmpty, Validate } from 'class-validator'
-import { IsBookExist } from './custom-validators/is-book-exist.validator'
+import { IsMovieExist } from './custom-validators/is-movie-exist.validator'
 
-export class BookIdDTO {
+export class MovieIdDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsMongoId()
-  @Validate(IsBookExist)
-  bookId!: string
+  @Validate(IsMovieExist)
+  movieId!: string
 }

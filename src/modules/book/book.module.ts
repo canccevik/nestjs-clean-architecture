@@ -1,7 +1,6 @@
-import { IsDocumentExist } from '@common/application/dto/custom-validators/is-document-exist.validator'
-import { AbstractBaseRepository } from '@common/domain/repositories/base.repository'
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
+import { IsBookExist } from './application/dto/custom-validators/is-book-exist.validator'
 import { BookService } from './application/services/book.service'
 import { Book, BookSchema } from './domain/models/book.model'
 import { AbstractBookRepository } from './domain/repositories/book.repository'
@@ -16,8 +15,7 @@ import { BookController } from './presentation/controllers/book.controller'
   providers: [
     BookService,
     { provide: AbstractBookRepository, useClass: BookRepository },
-    IsDocumentExist,
-    { provide: AbstractBaseRepository, useClass: BookRepository }
+    IsBookExist
   ]
 })
 export class BookModule {}

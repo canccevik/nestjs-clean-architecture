@@ -1,5 +1,5 @@
 import supertest, { SuperTest } from 'supertest'
-import { createModule } from './create-module'
+import { createModule } from './utils/create-module.util'
 import { HttpStatus, INestApplication } from '@nestjs/common'
 import { AbstractMovieRepository } from '@movie/domain/repositories/movie.repository'
 import { MovieDocument } from '@movie/domain/models/movie.model'

@@ -4,7 +4,7 @@ import { HttpStatus, INestApplication } from '@nestjs/common'
 import { AbstractMovieRepository } from '@movie/domain/repositories/movie.repository'
 import { MovieDocument } from '@movie/domain/models/movie.model'
 
-describe('Movie Controller - [POST] /movies', () => {
+describe('Movie Controller - [GET] /movies/:movieId', () => {
   let nestApp: INestApplication
   let movieRepository: AbstractMovieRepository<MovieDocument>
   let request: SuperTest<any>
@@ -18,7 +18,7 @@ describe('Movie Controller - [POST] /movies', () => {
     request = supertest(app.getHttpServer())
   })
 
-  it('should create a new movie', async () => {
+  it('should get the movie by id', async () => {
     const movie = {
       name: 'Batman Begins',
       category: 'ACTION',
@@ -32,7 +32,13 @@ describe('Movie Controller - [POST] /movies', () => {
 
     const createdMovie = createdMovieResponse.body.payload.movie
 
-    expect(createdMovie).toEqual({
+    const fetchedMovieResponse = await request
+      .get(`/movies/${createdMovie._id}`)
+      .expect(HttpStatus.OK)
+
+    const fetchedMovie = fetchedMovieResponse.body.payload.movie
+
+    expect(fetchedMovie).toEqual({
       _id: createdMovie._id,
       name: movie.name,
       category: movie.category,
