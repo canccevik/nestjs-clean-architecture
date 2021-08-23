@@ -18,4 +18,9 @@ export class BookService {
     const books = await this.bookRepository.find({})
     return { books }
   }
+
+  async getBookById(bookId: string) {
+    const book = await this.bookRepository.findById(bookId)
+    return { book }
+  }
 }
