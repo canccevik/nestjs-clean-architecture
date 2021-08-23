@@ -26,6 +26,13 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Documentation
+
+```bash
+# open on the web browser
+$ http://localhost:3001/api
+```
+
 ## Test
 
 ```bash
