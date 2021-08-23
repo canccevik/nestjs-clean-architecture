@@ -23,4 +23,8 @@ export class BookService {
     const book = await this.bookRepository.findById(bookId)
     return { book }
   }
+
+  async deleteBookById(bookId: string) {
+    await this.bookRepository.findByIdAndDelete(bookId)
+  }
 }

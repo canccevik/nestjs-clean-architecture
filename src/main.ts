@@ -6,6 +6,7 @@ import { AppModule } from './app.module'
 import { HttpExceptionFilter } from '@common/infrastructure/rest/filters/http-exception.filter'
 import { ValidationPipe } from '@common/infrastructure/rest/pipes/validation.pipe'
 import { ResponseMappingInterceptor } from '@common/infrastructure/rest/interceptors/response-mapping.interceptor'
+import { useContainer } from 'class-validator'
 
 import helmet from 'helmet'
 import compression from 'compression'
@@ -14,6 +15,8 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     cors: true
   })
+
+  useContainer(app.select(AppModule), { fallbackOnErrors: true })
 
   const configService = app.get<ConfigService>(ConfigService)
 

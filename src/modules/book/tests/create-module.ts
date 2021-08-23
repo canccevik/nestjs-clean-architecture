@@ -5,6 +5,7 @@ import { ValidationPipe } from '@common/infrastructure/rest/pipes/validation.pip
 import { Reflector } from '@nestjs/core'
 import { MongooseModule } from '@nestjs/mongoose'
 import { Test } from '@nestjs/testing'
+import { useContainer } from 'class-validator'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 
 export const createModule = async () => {
@@ -23,6 +24,8 @@ export const createModule = async () => {
   }).compile()
 
   const app = module.createNestApplication()
+
+  useContainer(app, { fallbackOnErrors: true })
 
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalFilters(new HttpExceptionFilter())
