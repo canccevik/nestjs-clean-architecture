@@ -22,6 +22,8 @@
     "@nestjs/mongoose": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.0.9",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "compression": "^1.7.4",
     "helmet": "^4.6.0",
     "mongoose": "^5.13.7",

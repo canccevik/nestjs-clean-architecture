@@ -4,6 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { AppModule } from './app.module'
 import { HttpExceptionFilter } from '@common/infrastructure/rest/filters/http-exception.filter'
+import { ValidationPipe } from '@common/infrastructure/rest/pipes/validation.pipe'
 
 import helmet from 'helmet'
 import compression from 'compression'
@@ -22,6 +23,7 @@ async function bootstrap() {
   app.use(helmet())
   app.use(compression())
 
+  app.useGlobalPipes(new ValidationPipe())
   app.useGlobalFilters(new HttpExceptionFilter())
 
   const appName = configService.get('appName')
