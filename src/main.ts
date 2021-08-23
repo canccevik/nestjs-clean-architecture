@@ -1,10 +1,11 @@
 import { ConfigService } from '@nestjs/config'
-import { NestFactory } from '@nestjs/core'
+import { NestFactory, Reflector } from '@nestjs/core'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { AppModule } from './app.module'
 import { HttpExceptionFilter } from '@common/infrastructure/rest/filters/http-exception.filter'
 import { ValidationPipe } from '@common/infrastructure/rest/pipes/validation.pipe'
+import { ResponseMappingInterceptor } from '@common/infrastructure/rest/interceptors/response-mapping.interceptor'
 
 import helmet from 'helmet'
 import compression from 'compression'
@@ -25,6 +26,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalFilters(new HttpExceptionFilter())
+  app.useGlobalInterceptors(new ResponseMappingInterceptor(new Reflector()))
 
   const appName = configService.get('appName')
   const appDescription = configService.get('appDescription')
