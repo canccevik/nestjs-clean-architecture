@@ -1,11 +1,12 @@
 import { Message } from '@common/infrastructure/decorators/message.decorator'
 import { CreateMovieCommand } from '@movie/application/commands/create-movie/create-movie.command'
+import { DeleteMovieByIdCommand } from '@movie/application/commands/delete-movie-by-id/delete-movie-by-id.command'
 import { UpdateMovieByIdCommand } from '@movie/application/commands/update-movie-by-id/update-movie-by-id.command'
 import { MovieIdDTO } from '@movie/application/dto/movie-id.dto'
 import { MovieDTO } from '@movie/application/dto/movie.dto'
 import { GetMovieByIdQuery } from '@movie/application/queries/get-movie-by-id/get-movie-by-id.query'
 import { GetMoviesQuery } from '@movie/application/queries/get-movies/get-movies.query'
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { ApiTags } from '@nestjs/swagger'
 
@@ -44,5 +45,11 @@ export class MovieController {
     return this.commandBus.execute(
       new UpdateMovieByIdCommand(params.movieId, updateMovieDTO)
     )
+  }
+
+  @Delete(':movieId')
+  @Message('Movie deleted successfully.')
+  async deletMovieById(@Param() params: MovieIdDTO) {
+    return this.commandBus.execute(new DeleteMovieByIdCommand(params.movieId))
   }
 }
