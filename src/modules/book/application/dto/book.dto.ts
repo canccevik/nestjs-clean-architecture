@@ -2,7 +2,7 @@ import { BookCategory } from '@book/domain/enums/book-category.enum'
 import { ApiProperty } from '@nestjs/swagger'
 import { IsEnum, IsNotEmpty, Length } from 'class-validator'
 
-export class CreateBookDTO {
+export class BookDTO {
   @ApiProperty()
   @IsNotEmpty()
   @Length(2, 30)

@@ -1,7 +1,7 @@
 import { BookDocument } from '@book/domain/models/book.model'
 import { AbstractBookRepository } from '@book/domain/repositories/book.repository'
 import { Injectable } from '@nestjs/common'
-import { CreateBookDTO } from '../dto/create-book.dto'
+import { BookDTO } from '../dto/book.dto'
 
 @Injectable()
 export class BookService {
@@ -9,7 +9,7 @@ export class BookService {
     private readonly bookRepository: AbstractBookRepository<BookDocument>
   ) {}
 
-  async createBook(book: CreateBookDTO) {
+  async createBook(book: BookDTO) {
     const createdBook = await this.bookRepository.create(book)
     return { book: createdBook }
   }
@@ -22,6 +22,11 @@ export class BookService {
   async getBookById(bookId: string) {
     const book = await this.bookRepository.findById(bookId)
     return { book }
+  }
+
+  async updateBookById(bookId: string, book: BookDTO) {
+    const updatedBook = await this.bookRepository.findOneAndUpdate(bookId, book)
+    return { book: updatedBook }
   }
 
   async deleteBookById(bookId: string) {
