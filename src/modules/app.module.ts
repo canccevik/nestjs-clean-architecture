@@ -15,10 +15,7 @@ import { MovieModule } from './movie/movie.module'
     }),
     MongooseModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
-        uri: configService.get('databaseURI'),
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true
+        uri: configService.get('databaseURI')
       }),
       inject: [ConfigService]
     })

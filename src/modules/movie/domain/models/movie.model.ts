@@ -1,8 +1,11 @@
-import { Document } from 'mongoose'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { MovieCategory } from '../enums/movie-category.enum'
 
-export type MovieDocument = Movie & Document
+export interface IMovie {
+  name: string
+  category: string
+  director: string
+}
 
 @Schema({
   versionKey: false,

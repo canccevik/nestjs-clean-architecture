@@ -1,34 +1,52 @@
 import { Injectable } from '@nestjs/common'
 import {
-  QueryResults,
-  QueryResult,
-  UpdateWriteQueryResult,
-  DeleteQueryResult
+  FilterQuery,
+  HydratedDocument,
+  UpdateQuery,
+  UpdateWithAggregationPipeline
+} from 'mongoose'
+import {
+  DeleteResult,
+  FindAllResult,
+  FindResult,
+  UpdateResult
 } from './types/query.types'
 
 @Injectable()
-export abstract class AbstractBaseRepository<Document> {
-  abstract create(object: any): Promise<Document>
+export abstract class AbstractBaseRepository<T> {
+  abstract create(object: T): Promise<HydratedDocument<T, unknown>>
 
-  abstract find(query: any): QueryResults<Document>
+  abstract find(query: FilterQuery<T>): Promise<FindAllResult<T>>
 
-  abstract findById(id: string): QueryResult<Document>
+  abstract findById(id: string): Promise<FindResult<T>>
 
-  abstract findByIdAndDelete(id: string): QueryResult<Document>
+  abstract findByIdAndDelete(id: string): Promise<FindResult<T>>
 
-  abstract findByIdAndUpdate(id: string, object: any): QueryResult<Document>
+  abstract findByIdAndUpdate(
+    id: string,
+    object: UpdateWithAggregationPipeline | UpdateQuery<T>
+  ): Promise<FindResult<T>>
 
-  abstract findOne(query: any): QueryResult<Document>
+  abstract findOne(query: FilterQuery<T>): Promise<FindResult<T>>
 
-  abstract findOneAndDelete(query: any): QueryResult<Document>
+  abstract findOneAndDelete(query: FilterQuery<T>): Promise<FindResult<T>>
 
-  abstract findOneAndUpdate(query: any, object: any): QueryResult<Document>
+  abstract findOneAndUpdate(
+    query: FilterQuery<T>,
+    object: UpdateWithAggregationPipeline | UpdateQuery<T>
+  ): Promise<FindResult<T>>
 
-  abstract updateMany(query: any, object: any): UpdateWriteQueryResult<Document>
+  abstract updateMany(
+    query: FilterQuery<T>,
+    object: UpdateWithAggregationPipeline | UpdateQuery<T>
+  ): Promise<UpdateResult<T>>
 
-  abstract updateOne(query: any, object: any): UpdateWriteQueryResult<Document>
+  abstract updateOne(
+    query: FilterQuery<T>,
+    object: UpdateWithAggregationPipeline | UpdateQuery<T>
+  ): Promise<UpdateResult<T>>
 
-  abstract deleteMany(query: any): DeleteQueryResult<Document>
+  abstract deleteMany(query: FilterQuery<T>): Promise<DeleteResult<T>>
 
-  abstract deleteOne(query: any): DeleteQueryResult<Document>
+  abstract deleteOne(query: FilterQuery<T>): Promise<DeleteResult<T>>
 }

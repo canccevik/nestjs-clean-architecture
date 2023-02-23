@@ -1,29 +1,29 @@
-import { EnforceDocument, Query, UpdateWriteOpResult } from 'mongoose'
+import { HydratedDocument, Query, UpdateWriteOpResult } from 'mongoose'
 
-export type QueryResults<Document> = Query<
-  EnforceDocument<Document, any>[],
-  EnforceDocument<Document, any>,
-  any,
-  Document
+export type FindAllResult<T> = Query<
+  HydratedDocument<T, unknown>[],
+  HydratedDocument<T, unknown>
 >
 
-export type QueryResult<Document> = Query<
-  EnforceDocument<Document, any> | null,
-  any
+export type FindResult<T> = Query<
+  HydratedDocument<T, unknown> | null,
+  HydratedDocument<T, unknown>,
+  unknown,
+  T
 >
 
-export type UpdateWriteQueryResult<Document> = Query<
+export type UpdateResult<T> = Query<
   UpdateWriteOpResult,
-  EnforceDocument<Document, any>,
-  any,
-  Document
+  HydratedDocument<T, unknown>,
+  unknown,
+  T
 >
 
-export type DeleteQueryResult<Document> = Query<
+export type DeleteResult<T> = Query<
   { ok?: number | undefined; n?: number | undefined } & {
     deletedCount?: number | undefined
   },
-  EnforceDocument<Document, any>,
-  any,
-  Document
+  HydratedDocument<T, unknown>,
+  unknown,
+  T
 >

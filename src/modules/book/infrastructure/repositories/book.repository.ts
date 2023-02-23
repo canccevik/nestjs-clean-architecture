@@ -1,4 +1,4 @@
-import { Book, BookDocument } from '@book/domain/models/book.model'
+import { Book, IBook } from '@book/domain/models/book.model'
 import { AbstractBookRepository } from '@book/domain/repositories/book.repository'
 import { BaseRepository } from '@common/infrastructure/repositories/base.repository'
 import { Injectable } from '@nestjs/common'
@@ -7,10 +7,10 @@ import { Model } from 'mongoose'
 
 @Injectable()
 export class BookRepository
-  extends BaseRepository<BookDocument>
-  implements AbstractBookRepository<BookDocument>
+  extends BaseRepository<IBook>
+  implements AbstractBookRepository<IBook>
 {
-  constructor(@InjectModel(Book.name) private bookModel: Model<BookDocument>) {
+  constructor(@InjectModel(Book.name) private bookModel: Model<IBook>) {
     super(bookModel)
   }
 }

@@ -14,10 +14,7 @@ export const createModule = async () => {
       BookModule,
       MongooseModule.forRootAsync({
         useFactory: async () => ({
-          uri: (await MongoMemoryServer.create()).getUri(),
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-          useCreateIndex: true
+          uri: (await MongoMemoryServer.create()).getUri()
         })
       })
     ]

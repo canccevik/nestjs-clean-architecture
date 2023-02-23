@@ -3,5 +3,5 @@ import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export abstract class AbstractMovieRepository<
-  Document
-> extends AbstractBaseRepository<Document> {}
+  T
+> extends AbstractBaseRepository<T> {}
