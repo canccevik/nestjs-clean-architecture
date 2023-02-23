@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { config } from '@common/infrastructure/configurations/index.config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { BookModule } from '@book/book.module'
-import { MovieModule } from './modules/movie/movie.module'
+import { MovieModule } from './movie/movie.module'
 
 @Module({
   imports: [
