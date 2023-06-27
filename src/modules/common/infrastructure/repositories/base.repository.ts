@@ -1,5 +1,6 @@
 import { AbstractBaseRepository } from '@common/domain/repositories/base.repository'
 import {
+  CreateResult,
   DeleteResult,
   FindAllResult,
   FindResult,
@@ -8,7 +9,6 @@ import {
 import { Injectable } from '@nestjs/common'
 import {
   FilterQuery,
-  HydratedDocument,
   Model,
   UpdateQuery,
   UpdateWithAggregationPipeline
@@ -20,63 +20,63 @@ export class BaseRepository<T> extends AbstractBaseRepository<T> {
     super()
   }
 
-  async create(object: T): Promise<HydratedDocument<T, unknown>> {
+  async create(object: Partial<T>): Promise<CreateResult<T>> {
     return this.model.create(object)
   }
 
-  async find(query: FilterQuery<T>): Promise<FindAllResult<T>> {
+  find(query: FilterQuery<T>): FindAllResult<T> {
     return this.model.find(query)
   }
 
-  async findById(id: string): Promise<FindResult<T>> {
+  findById(id: string): FindResult<T> {
     return this.model.findById(id)
   }
 
-  async findByIdAndDelete(id: string): Promise<FindResult<T>> {
+  findByIdAndDelete(id: string): FindResult<T> {
     return this.model.findByIdAndRemove(id)
   }
 
-  async findByIdAndUpdate(
+  findByIdAndUpdate(
     id: string,
     update: UpdateWithAggregationPipeline | UpdateQuery<T>
-  ): Promise<FindResult<T>> {
+  ): FindResult<T> {
     return this.model.findByIdAndUpdate(id, update, { new: true })
   }
 
-  async findOne(filter: FilterQuery<T>): Promise<FindResult<T>> {
+  findOne(filter: FilterQuery<T>): FindResult<T> {
     return this.model.findOne(filter)
   }
 
-  async findOneAndDelete(filter: FilterQuery<T>): Promise<FindResult<T>> {
+  findOneAndDelete(filter: FilterQuery<T>): FindResult<T> {
     return this.model.findOneAndDelete(filter)
   }
 
-  async findOneAndUpdate(
+  findOneAndUpdate(
     filter: FilterQuery<T>,
     update: UpdateWithAggregationPipeline | UpdateQuery<T>
-  ): Promise<FindResult<T>> {
+  ): FindResult<T> {
     return this.model.findOneAndUpdate(filter, update, { new: true })
   }
 
-  async updateMany(
+  updateMany(
     filter: FilterQuery<T>,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
-  ): Promise<UpdateResult<T>> {
+  ): UpdateResult<T> {
     return this.model.updateMany(filter, object, { new: true })
   }
 
-  async updateOne(
+  updateOne(
     query: FilterQuery<T>,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
-  ): Promise<UpdateResult<T>> {
+  ): UpdateResult<T> {
     return this.model.updateOne(query, object)
   }
 
-  async deleteMany(filter: FilterQuery<T>): Promise<DeleteResult<T>> {
+  deleteMany(filter: FilterQuery<T>): DeleteResult<T> {
     return this.model.deleteMany(filter)
   }
 
-  async deleteOne(filter: FilterQuery<T>): Promise<DeleteResult<T>> {
+  deleteOne(filter: FilterQuery<T>): DeleteResult<T> {
     return this.model.deleteOne(filter)
   }
 }

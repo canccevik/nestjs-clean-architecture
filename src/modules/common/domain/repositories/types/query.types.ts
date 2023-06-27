@@ -1,5 +1,7 @@
 import { HydratedDocument, Query, UpdateWriteOpResult } from 'mongoose'
 
+export type CreateResult<T> = HydratedDocument<T, unknown>
+
 export type FindAllResult<T> = Query<
   HydratedDocument<T, unknown>[],
   HydratedDocument<T, unknown>

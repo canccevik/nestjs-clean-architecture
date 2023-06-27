@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import {
   FilterQuery,
-  HydratedDocument,
   UpdateQuery,
   UpdateWithAggregationPipeline
 } from 'mongoose'
 import {
+  CreateResult,
   DeleteResult,
   FindAllResult,
   FindResult,
@@ -14,39 +14,39 @@ import {
 
 @Injectable()
 export abstract class AbstractBaseRepository<T> {
-  abstract create(object: T): Promise<HydratedDocument<T, unknown>>
+  abstract create(object: Partial<T>): Promise<CreateResult<T>>
 
-  abstract find(query: FilterQuery<T>): Promise<FindAllResult<T>>
+  abstract find(query: FilterQuery<T>): FindAllResult<T>
 
-  abstract findById(id: string): Promise<FindResult<T>>
+  abstract findById(id: string): FindResult<T>
 
-  abstract findByIdAndDelete(id: string): Promise<FindResult<T>>
+  abstract findByIdAndDelete(id: string): FindResult<T>
 
   abstract findByIdAndUpdate(
     id: string,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
-  ): Promise<FindResult<T>>
+  ): FindResult<T>
 
-  abstract findOne(query: FilterQuery<T>): Promise<FindResult<T>>
+  abstract findOne(query: FilterQuery<T>): FindResult<T>
 
-  abstract findOneAndDelete(query: FilterQuery<T>): Promise<FindResult<T>>
+  abstract findOneAndDelete(query: FilterQuery<T>): FindResult<T>
 
   abstract findOneAndUpdate(
     query: FilterQuery<T>,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
-  ): Promise<FindResult<T>>
+  ): FindResult<T>
 
   abstract updateMany(
     query: FilterQuery<T>,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
-  ): Promise<UpdateResult<T>>
+  ): UpdateResult<T>
 
   abstract updateOne(
     query: FilterQuery<T>,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
-  ): Promise<UpdateResult<T>>
+  ): UpdateResult<T>
 
-  abstract deleteMany(query: FilterQuery<T>): Promise<DeleteResult<T>>
+  abstract deleteMany(query: FilterQuery<T>): DeleteResult<T>
 
-  abstract deleteOne(query: FilterQuery<T>): Promise<DeleteResult<T>>
+  abstract deleteOne(query: FilterQuery<T>): DeleteResult<T>
 }
