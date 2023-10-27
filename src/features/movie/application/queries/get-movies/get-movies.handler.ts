@@ -9,9 +9,7 @@ export class GetMoviesQueryHandler implements IQueryHandler<GetMoviesQuery> {
     private readonly movieRepository: AbstractMovieRepository<IMovie>
   ) {}
 
-  // eslint-disable-next-line
-  async execute(query: GetMoviesQuery) {
-    const movies = await this.movieRepository.find({})
-    return { movies }
+  async execute() {
+    return this.movieRepository.find({})
   }
 }

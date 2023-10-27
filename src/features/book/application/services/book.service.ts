@@ -8,26 +8,19 @@ export class BookService {
   constructor(private readonly bookRepository: AbstractBookRepository<IBook>) {}
 
   async createBook(book: BookDTO) {
-    const createdBook = await this.bookRepository.create(book)
-    return { book: createdBook }
+    return this.bookRepository.create(book)
   }
 
   async getBooks() {
-    const books = await this.bookRepository.find({})
-    return { books }
+    return this.bookRepository.find({})
   }
 
   async getBookById(bookId: string) {
-    const book = await this.bookRepository.findById(bookId)
-    return { book }
+    return this.bookRepository.findById(bookId)
   }
 
   async updateBookById(bookId: string, book: BookDTO) {
-    const updatedBook = await this.bookRepository.findByIdAndUpdate(
-      bookId,
-      book
-    )
-    return { book: updatedBook }
+    return this.bookRepository.findByIdAndUpdate(bookId, book)
   }
 
   async deleteBookById(bookId: string) {

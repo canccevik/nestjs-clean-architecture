@@ -12,7 +12,6 @@ export class GetMovieByIdQueryHandler
   ) {}
 
   async execute({ movieId }: GetMovieByIdQuery) {
-    const movie = await this.movieRepository.findById(movieId)
-    return { movie }
+    return this.movieRepository.findById(movieId)
   }
 }

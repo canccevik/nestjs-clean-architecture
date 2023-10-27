@@ -12,10 +12,6 @@ export class UpdateMovieByIdCommandHandler
   ) {}
 
   async execute({ movieId, movie }: UpdateMovieByIdCommand) {
-    const updatedMovie = await this.movieRepository.findByIdAndUpdate(
-      movieId,
-      movie
-    )
-    return { movie: updatedMovie }
+    return this.movieRepository.findByIdAndUpdate(movieId, movie)
   }
 }

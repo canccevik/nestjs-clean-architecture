@@ -12,7 +12,6 @@ export class CreateMovieCommandHandler
   ) {}
 
   async execute({ movie }: CreateMovieCommand) {
-    const createdMovie = await this.movieRepository.create(movie)
-    return { movie: createdMovie }
+    return this.movieRepository.create(movie)
   }
 }
