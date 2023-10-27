@@ -21,17 +21,14 @@ export class ValidationPipe implements PipeTransform {
       stopAtFirstError: true
     })
 
-    if (errors.length > 0) {
-      const errorMessages: string[] = []
-
-      errors.forEach((err: ValidationError) => {
-        Object.keys(err.constraints!).forEach((key) => {
-          errorMessages.push(err.constraints![key])
-        })
-      })
-      throw new BadRequestException(errorMessages)
+    if (errors.length === 0) {
+      return value
     }
-    return value
+
+    const errorMessages = errors.flatMap((err) =>
+      Object.values(err.constraints!)
+    )
+    throw new BadRequestException(errorMessages)
   }
 
   private toValidate(metatype: any): boolean {
