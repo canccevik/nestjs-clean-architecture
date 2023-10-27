@@ -2,17 +2,17 @@ import supertest, { SuperTest } from 'supertest'
 import { createModule } from './utils/create-module.util'
 import { HttpStatus, INestApplication } from '@nestjs/common'
 import { AbstractMovieRepository } from '@movie/domain/repositories/movie.repository'
-import { IMovie } from '@movie/domain/models/movie.model'
+import { MovieDocument } from '@movie/domain/models/movie.model'
 
 describe('Movie Controller - [PUT] /movies/:movieId', () => {
   let nestApp: INestApplication
-  let movieRepository: AbstractMovieRepository<IMovie>
+  let movieRepository: AbstractMovieRepository<MovieDocument>
   let request: SuperTest<any>
 
   beforeAll(async () => {
     const { app, module } = await createModule()
     nestApp = app
-    movieRepository = module.get<AbstractMovieRepository<IMovie>>(
+    movieRepository = module.get<AbstractMovieRepository<MovieDocument>>(
       AbstractMovieRepository
     )
     request = supertest(app.getHttpServer())

@@ -1,4 +1,4 @@
-import { IMovie } from '@movie/domain/models/movie.model'
+import { MovieDocument } from '@movie/domain/models/movie.model'
 import { AbstractMovieRepository } from '@movie/domain/repositories/movie.repository'
 import { Injectable } from '@nestjs/common'
 import { ValidationArguments, ValidatorConstraint } from 'class-validator'
@@ -6,7 +6,9 @@ import { ValidationArguments, ValidatorConstraint } from 'class-validator'
 @ValidatorConstraint({ async: true })
 @Injectable()
 export class IsMovieExist {
-  constructor(private readonly repository: AbstractMovieRepository<IMovie>) {}
+  constructor(
+    private readonly repository: AbstractMovieRepository<MovieDocument>
+  ) {}
 
   // eslint-disable-next-line
   async validate(id: string, args: ValidationArguments) {
