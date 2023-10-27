@@ -7,8 +7,8 @@
     "^.+\\.(t|j)s$": "ts-jest"
   },
   "moduleNameMapper": {
-    "@common/(.*)": "<rootDir>/src/modules/common/$1",
-    "@book/(.*)": "<rootDir>/src/modules/book/$1",
-    "@movie/(.*)": "<rootDir>/src/modules/movie/$1"
+    "@common/(.*)": "<rootDir>/src/features/common/$1",
+    "@book/(.*)": "<rootDir>/src/features/book/$1",
+    "@movie/(.*)": "<rootDir>/src/features/movie/$1"
   }
 }

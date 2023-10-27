@@ -5,14 +5,12 @@ import {
 } from '@common/infrastructure/configurations/index.config'
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
-import { BookModule } from '@book/book.module'
-import { MovieModule } from './movie/movie.module'
 import { EnvalidModule } from 'nestjs-envalid'
+import { FeaturesModule } from 'src/features/features.module'
 
 @Module({
   imports: [
-    MovieModule,
-    BookModule,
+    FeaturesModule,
     EnvalidModule.forRoot({
       validators,
       isGlobal: true,

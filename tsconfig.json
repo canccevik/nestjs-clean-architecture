@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "paths": {
-      "@common/*": ["src/modules/common/*"],
-      "@book/*": ["src/modules/book/*"],
-      "@movie/*": ["src/modules/movie/*"]
+      "@common/*": ["src/features/common/*"],
+      "@book/*": ["src/features/book/*"],
+      "@movie/*": ["src/features/movie/*"]
     },
     "module": "CommonJS",
     "declaration": true,
