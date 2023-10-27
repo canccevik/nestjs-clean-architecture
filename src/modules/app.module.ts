@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common'
 import { EnvalidModule } from 'nestjs-envalid'
 import { FeaturesModule } from 'src/features/features.module'
 import { DatabaseModule } from './database/database.module'
+import { LoggerModule } from './logger/logger.module'
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { DatabaseModule } from './database/database.module'
       isGlobal: true,
       useDotenv: true
     }),
-    DatabaseModule
+    DatabaseModule,
+    LoggerModule
   ]
 })
 export class AppModule {}

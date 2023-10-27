@@ -7,7 +7,8 @@ const config = {
   APP_NAME: str(),
   APP_DESCRIPTION: str(),
   API_VERSION: str(),
-  DATABASE_URI: str()
+  DATABASE_URI: str(),
+  LOGTAIL_SOURCE_TOKEN: str()
 }
 
 export const validators = makeValidators(config)
