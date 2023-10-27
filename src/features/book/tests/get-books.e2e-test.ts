@@ -30,11 +30,11 @@ describe('Book Controller - [GET] /books', () => {
       .send(book)
       .expect(HttpStatus.CREATED)
 
-    const createdBook = createdBookResponse.body.payload.book
+    const createdBook = createdBookResponse.body.payload
 
     const fetchedBooks = await request.get('/books').expect(HttpStatus.OK)
 
-    const books = fetchedBooks.body.payload.books
+    const books = fetchedBooks.body.payload
 
     expect(books).toEqual([
       {

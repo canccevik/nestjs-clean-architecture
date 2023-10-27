@@ -30,7 +30,7 @@ describe('Movie Controller - [PUT] /movies/:movieId', () => {
       .send(movie)
       .expect(HttpStatus.CREATED)
 
-    const createdMovie = createdMovieResponse.body.payload.movie
+    const createdMovie = createdMovieResponse.body.payload
 
     createdMovie.director = 'Christopher Edward Nolan'
 
@@ -39,7 +39,7 @@ describe('Movie Controller - [PUT] /movies/:movieId', () => {
       .send(movie)
       .expect(HttpStatus.OK)
 
-    const updatedMovie = updatedMovieResponse.body.payload.movie
+    const updatedMovie = updatedMovieResponse.body.payload
 
     expect(updatedMovie).toEqual({
       _id: createdMovie._id,

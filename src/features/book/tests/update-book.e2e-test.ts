@@ -30,7 +30,7 @@ describe('Book Controller - [PUT] /books/:bookId', () => {
       .send(book)
       .expect(HttpStatus.CREATED)
 
-    const createdBook = createdBookResponse.body.payload.book
+    const createdBook = createdBookResponse.body.payload
 
     book.author = 'Katherine J. Mack'
 
@@ -39,7 +39,7 @@ describe('Book Controller - [PUT] /books/:bookId', () => {
       .send(book)
       .expect(HttpStatus.OK)
 
-    const updatedBook = updatedBookResponse.body.payload.book
+    const updatedBook = updatedBookResponse.body.payload
 
     expect(updatedBook).toEqual({
       _id: createdBook._id,

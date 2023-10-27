@@ -30,7 +30,7 @@ describe('Book Controller - [DELETE] /books/:bookId', () => {
       .send(book)
       .expect(HttpStatus.CREATED)
 
-    const createdBook = createdBookResponse.body.payload.book
+    const createdBook = createdBookResponse.body.payload
 
     await request.delete(`/books/${createdBook._id}`).expect(200)
   })

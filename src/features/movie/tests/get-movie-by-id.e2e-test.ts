@@ -30,13 +30,13 @@ describe('Movie Controller - [GET] /movies/:movieId', () => {
       .send(movie)
       .expect(HttpStatus.CREATED)
 
-    const createdMovie = createdMovieResponse.body.payload.movie
+    const createdMovie = createdMovieResponse.body.payload
 
     const fetchedMovieResponse = await request
       .get(`/movies/${createdMovie._id}`)
       .expect(HttpStatus.OK)
 
-    const fetchedMovie = fetchedMovieResponse.body.payload.movie
+    const fetchedMovie = fetchedMovieResponse.body.payload
 
     expect(fetchedMovie).toEqual({
       _id: createdMovie._id,

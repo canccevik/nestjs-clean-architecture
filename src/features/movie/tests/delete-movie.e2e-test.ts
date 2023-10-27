@@ -30,7 +30,7 @@ describe('Movie Controller - [DELETE] /movies/:movieId', () => {
       .send(movie)
       .expect(HttpStatus.CREATED)
 
-    const createdMovie = createdMovieResponse.body.payload.movie
+    const createdMovie = createdMovieResponse.body.payload
 
     await request.delete(`/movies/${createdMovie._id}`).expect(HttpStatus.OK)
   })

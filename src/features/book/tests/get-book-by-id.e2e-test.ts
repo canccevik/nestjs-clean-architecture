@@ -30,13 +30,13 @@ describe('Book Controller - [GET] /books/:bookId', () => {
       .send(book)
       .expect(HttpStatus.CREATED)
 
-    const createdBook = createdBookResponse.body.payload.book
+    const createdBook = createdBookResponse.body.payload
 
     const fetchedBookResponse = await request
       .get(`/books/${createdBook._id}`)
       .expect(HttpStatus.OK)
 
-    const fetchedBook = fetchedBookResponse.body.payload.book
+    const fetchedBook = fetchedBookResponse.body.payload
 
     expect(fetchedBook).toEqual({
       _id: createdBook._id,

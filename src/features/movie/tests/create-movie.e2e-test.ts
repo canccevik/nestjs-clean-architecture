@@ -30,7 +30,7 @@ describe('Movie Controller - [POST] /movies', () => {
       .send(movie)
       .expect(HttpStatus.CREATED)
 
-    const createdMovie = createdMovieResponse.body.payload.movie
+    const createdMovie = createdMovieResponse.body.payload
 
     expect(createdMovie).toEqual({
       _id: createdMovie._id,

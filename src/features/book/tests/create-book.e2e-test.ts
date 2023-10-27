@@ -30,7 +30,7 @@ describe('Book Controller - [POST] /books', () => {
       .send(book)
       .expect(HttpStatus.CREATED)
 
-    const createdBook = createdBookResponse.body.payload.book
+    const createdBook = createdBookResponse.body.payload
 
     expect(createdBook).toEqual({
       _id: createdBook._id,
