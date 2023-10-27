@@ -1,11 +1,13 @@
-import { IBook } from '@book/domain/models/book.model'
+import { BookDocument } from '@book/domain/models/book.model'
 import { Injectable } from '@nestjs/common'
 import { BookDTO } from '../dto/book.dto'
 import { AbstractBookRepository } from '@book/domain/repositories/book.repository'
 
 @Injectable()
 export class BookService {
-  constructor(private readonly bookRepository: AbstractBookRepository<IBook>) {}
+  constructor(
+    private readonly bookRepository: AbstractBookRepository<BookDocument>
+  ) {}
 
   async createBook(book: BookDTO) {
     return this.bookRepository.create(book)

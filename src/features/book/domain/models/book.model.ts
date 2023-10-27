@@ -1,11 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { BookCategory } from '../enums/book-category.enum'
+import { HydratedDocument } from 'mongoose'
 
-export interface IBook {
-  name: string
-  category: string
-  author: string
-}
+export type BookDocument = HydratedDocument<Book>
 
 @Schema({
   versionKey: false,
