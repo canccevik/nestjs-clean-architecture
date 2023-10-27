@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
+      "@modules/*": ["src/modules/*"],
       "@common/*": ["src/features/common/*"],
       "@book/*": ["src/features/book/*"],
       "@movie/*": ["src/features/movie/*"]
