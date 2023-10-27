@@ -19,6 +19,7 @@ describe('Book Controller - [PUT] /books/:bookId', () => {
   })
 
   it('should update the book by id', async () => {
+    // ARRANGE
     const book = {
       name: 'The End of Everything',
       category: 'SCIENCE',
@@ -34,6 +35,7 @@ describe('Book Controller - [PUT] /books/:bookId', () => {
 
     book.author = 'Katherine J. Mack'
 
+    // ACT
     const updatedBookResponse = await request
       .put(`/books/${createdBook._id}`)
       .send(book)
@@ -41,6 +43,7 @@ describe('Book Controller - [PUT] /books/:bookId', () => {
 
     const updatedBook = updatedBookResponse.body.payload
 
+    // ASSERT
     expect(updatedBook).toEqual({
       _id: createdBook._id,
       name: book.name,

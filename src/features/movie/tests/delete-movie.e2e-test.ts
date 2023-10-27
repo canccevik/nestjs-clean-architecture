@@ -19,12 +19,14 @@ describe('Movie Controller - [DELETE] /movies/:movieId', () => {
   })
 
   it('should delete the movie by id', async () => {
+    // ARRANGE
     const movie = {
       name: 'Batman Begins',
       category: 'ACTION',
       director: 'Christopher Nolan'
     }
 
+    // ACT
     const createdMovieResponse = await request
       .post('/movies')
       .send(movie)
@@ -32,6 +34,7 @@ describe('Movie Controller - [DELETE] /movies/:movieId', () => {
 
     const createdMovie = createdMovieResponse.body.payload
 
+    // ASSERT
     await request.delete(`/movies/${createdMovie._id}`).expect(HttpStatus.OK)
   })
 

@@ -19,12 +19,14 @@ describe('Movie Controller - [POST] /movies', () => {
   })
 
   it('should create a new movie', async () => {
+    // ARRANGE
     const movie = {
       name: 'Batman Begins',
       category: 'ACTION',
       director: 'Christopher Nolan'
     }
 
+    // ACT
     const createdMovieResponse = await request
       .post('/movies')
       .send(movie)
@@ -32,6 +34,7 @@ describe('Movie Controller - [POST] /movies', () => {
 
     const createdMovie = createdMovieResponse.body.payload
 
+    // ASSERT
     expect(createdMovie).toEqual({
       _id: createdMovie._id,
       name: movie.name,

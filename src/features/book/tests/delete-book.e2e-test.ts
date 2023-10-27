@@ -19,12 +19,14 @@ describe('Book Controller - [DELETE] /books/:bookId', () => {
   })
 
   it('should delete the book by id', async () => {
+    // ARRANGE
     const book = {
       name: 'The End of Everything',
       category: 'SCIENCE',
       author: 'Katie Mack'
     }
 
+    // ACT
     const createdBookResponse = await request
       .post('/books')
       .send(book)
@@ -32,6 +34,7 @@ describe('Book Controller - [DELETE] /books/:bookId', () => {
 
     const createdBook = createdBookResponse.body.payload
 
+    // ASSERT
     await request.delete(`/books/${createdBook._id}`).expect(200)
   })
 

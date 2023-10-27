@@ -19,12 +19,14 @@ describe('Book Controller - [POST] /books', () => {
   })
 
   it('should create a new book', async () => {
+    // ARRANGE
     const book = {
       name: 'The End of Everything',
       category: 'SCIENCE',
       author: 'Katie Mack'
     }
 
+    // ACT
     const createdBookResponse = await request
       .post('/books')
       .send(book)
@@ -32,6 +34,7 @@ describe('Book Controller - [POST] /books', () => {
 
     const createdBook = createdBookResponse.body.payload
 
+    // ASSERT
     expect(createdBook).toEqual({
       _id: createdBook._id,
       name: book.name,

@@ -19,6 +19,7 @@ describe('Movie Controller - [PUT] /movies/:movieId', () => {
   })
 
   it('should update the movie by id', async () => {
+    // ARRANGE
     const movie = {
       name: 'Batman Begins',
       category: 'ACTION',
@@ -34,6 +35,7 @@ describe('Movie Controller - [PUT] /movies/:movieId', () => {
 
     createdMovie.director = 'Christopher Edward Nolan'
 
+    // ACT
     const updatedMovieResponse = await request
       .put(`/movies/${createdMovie._id}`)
       .send(movie)
@@ -41,6 +43,7 @@ describe('Movie Controller - [PUT] /movies/:movieId', () => {
 
     const updatedMovie = updatedMovieResponse.body.payload
 
+    // ASSERT
     expect(updatedMovie).toEqual({
       _id: createdMovie._id,
       name: movie.name,

@@ -19,6 +19,7 @@ describe('Movie Controller - [GET] /movies', () => {
   })
 
   it('should get all movies', async () => {
+    // ARRANGE
     const movie = {
       name: 'Batman Begins',
       category: 'ACTION',
@@ -32,10 +33,12 @@ describe('Movie Controller - [GET] /movies', () => {
 
     const createdMovie = createdMovieResponse.body.payload
 
+    // ACT
     const fetchedMovies = await request.get('/movies').expect(HttpStatus.OK)
 
     const movies = fetchedMovies.body.payload
 
+    // ASSERT
     expect(movies).toEqual([
       {
         _id: createdMovie._id,

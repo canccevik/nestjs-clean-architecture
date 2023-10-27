@@ -19,6 +19,7 @@ describe('Book Controller - [GET] /books/:bookId', () => {
   })
 
   it('should get the book by id', async () => {
+    // ARRANGE
     const book = {
       name: 'The End of Everything',
       category: 'SCIENCE',
@@ -32,12 +33,14 @@ describe('Book Controller - [GET] /books/:bookId', () => {
 
     const createdBook = createdBookResponse.body.payload
 
+    // ACT
     const fetchedBookResponse = await request
       .get(`/books/${createdBook._id}`)
       .expect(HttpStatus.OK)
 
     const fetchedBook = fetchedBookResponse.body.payload
 
+    // ASSERT
     expect(fetchedBook).toEqual({
       _id: createdBook._id,
       name: book.name,
