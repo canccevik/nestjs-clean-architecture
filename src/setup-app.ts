@@ -9,6 +9,8 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import { AppModule } from './modules/app.module'
 import { Config, ENV } from '@common/infrastructure/configurations/index.config'
+import { LoggingInterceptor } from '@common/infrastructure/rest/interceptors/logging.interceptor'
+import { Logger } from 'nestjs-pino'
 
 export function setupApp(app: NestExpressApplication): void {
   useContainer(app.select(AppModule), { fallbackOnErrors: true })
@@ -26,4 +28,9 @@ export function setupApp(app: NestExpressApplication): void {
   app.useGlobalPipes(new ValidationPipe())
   app.useGlobalFilters(new HttpExceptionFilter())
   app.useGlobalInterceptors(new ResponseMappingInterceptor(new Reflector()))
+
+  if (!config.isTest) {
+    const logger = app.get<Logger>(Logger)
+    app.useGlobalInterceptors(new LoggingInterceptor(logger))
+  }
 }
