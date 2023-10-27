@@ -1,7 +1,7 @@
 import { IBook } from '@book/domain/models/book.model'
-import { AbstractBookRepository } from '@book/domain/repositories/book.repository'
 import { Injectable } from '@nestjs/common'
 import { BookDTO } from '../dto/book.dto'
+import { AbstractBookRepository } from '@book/domain/repositories/book.repository'
 
 @Injectable()
 export class BookService {

@@ -13,8 +13,8 @@ import { BookController } from './presentation/controllers/book.controller'
   ],
   controllers: [BookController],
   providers: [
-    BookService,
     { provide: AbstractBookRepository, useClass: BookRepository },
+    BookService,
     IsBookExist
   ]
 })

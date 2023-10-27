@@ -16,10 +16,10 @@ import { MovieController } from './presentation/controllers/movie.controller'
   ],
   controllers: [MovieController],
   providers: [
-    { provide: AbstractMovieRepository, useClass: MovieRepository },
     IsMovieExist,
     ...MovieCommandHandlers,
-    ...MovieQueryHandlers
+    ...MovieQueryHandlers,
+    { provide: AbstractMovieRepository, useClass: MovieRepository }
   ]
 })
 export class MovieModule {}
