@@ -1,8 +1,15 @@
-export const config = () => ({
-  port: process.env.PORT || 3001,
-  globalPrefix: process.env.GLOBAL_PREFIX || 'api',
-  appName: process.env.APP_NAME,
-  appDescription: process.env.APP_DESCRIPTION,
-  apiVersion: process.env.API_VERSION,
-  databaseURI: process.env.DATABASE_URI
-})
+import { port, str } from 'envalid'
+import { makeValidators, Static } from 'nestjs-envalid'
+
+const config = {
+  PORT: port({ default: 3001 }),
+  GLOBAL_PREFIX: str({ default: 'api' }),
+  APP_NAME: str(),
+  APP_DESCRIPTION: str(),
+  API_VERSION: str(),
+  DATABASE_URI: str()
+}
+
+export const validators = makeValidators(config)
+export type Config = Static<typeof validators>
+export const ENV = 'EnvalidModuleEnv'

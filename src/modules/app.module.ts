@@ -1,23 +1,28 @@
+import {
+  Config,
+  ENV,
+  validators
+} from '@common/infrastructure/configurations/index.config'
 import { Module } from '@nestjs/common'
-import { ConfigModule, ConfigService } from '@nestjs/config'
-import { config } from '@common/infrastructure/configurations/index.config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { BookModule } from '@book/book.module'
 import { MovieModule } from './movie/movie.module'
+import { EnvalidModule } from 'nestjs-envalid'
 
 @Module({
   imports: [
     MovieModule,
     BookModule,
-    ConfigModule.forRoot({
-      load: [config],
-      isGlobal: true
+    EnvalidModule.forRoot({
+      validators,
+      isGlobal: true,
+      useDotenv: true
     }),
     MongooseModule.forRootAsync({
-      useFactory: (configService: ConfigService) => ({
-        uri: configService.get('databaseURI')
+      useFactory: (config: Config) => ({
+        uri: config.DATABASE_URI
       }),
-      inject: [ConfigService]
+      inject: [ENV]
     })
   ]
 })
