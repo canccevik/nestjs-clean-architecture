@@ -9,7 +9,7 @@ export class GetMoviesQueryHandler implements IQueryHandler<GetMoviesQuery> {
     private readonly movieRepository: AbstractMovieRepository<MovieDocument>
   ) {}
 
-  async execute() {
+  public async execute(): Promise<MovieDocument[] | null> {
     return this.movieRepository.find({})
   }
 }

@@ -10,7 +10,7 @@ import {
 
 @Catch()
 export class HttpExceptionFilter<T> implements ExceptionFilter {
-  catch(exception: T, host: ArgumentsHost) {
+  public catch(exception: T, host: ArgumentsHost): void {
     const res = host.switchToHttp().getResponse<Response>()
 
     const status =

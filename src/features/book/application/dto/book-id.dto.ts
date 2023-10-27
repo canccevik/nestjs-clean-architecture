@@ -7,5 +7,5 @@ export class BookIdDTO {
   @IsNotEmpty()
   @IsMongoId()
   @Validate(IsBookExist)
-  bookId!: string
+  public bookId!: string
 }

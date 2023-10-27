@@ -10,13 +10,15 @@ export class IsBookExist {
     private readonly repository: AbstractBookRepository<BookDocument>
   ) {}
 
-  // eslint-disable-next-line
-  async validate(id: string, args: ValidationArguments) {
+  public async validate(
+    id: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    args: ValidationArguments
+  ): Promise<BookDocument | null> {
     return this.repository.findById(id)
   }
 
-  // eslint-disable-next-line
-  defaultMessage(args: ValidationArguments) {
+  public defaultMessage(): string {
     return 'book cannot found'
   }
 }

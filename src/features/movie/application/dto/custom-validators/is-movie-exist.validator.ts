@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { MovieDocument } from '@movie/domain/models/movie.model'
 import { AbstractMovieRepository } from '@movie/domain/repositories/movie.repository'
 import { Injectable } from '@nestjs/common'
@@ -10,13 +11,14 @@ export class IsMovieExist {
     private readonly repository: AbstractMovieRepository<MovieDocument>
   ) {}
 
-  // eslint-disable-next-line
-  async validate(id: string, args: ValidationArguments) {
+  public async validate(
+    id: string,
+    args: ValidationArguments
+  ): Promise<MovieDocument | null> {
     return this.repository.findById(id)
   }
 
-  // eslint-disable-next-line
-  defaultMessage(args: ValidationArguments) {
+  public defaultMessage(): string {
     return 'movie cannot found'
   }
 }

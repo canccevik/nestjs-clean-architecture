@@ -14,39 +14,39 @@ import {
 
 @Injectable()
 export abstract class AbstractBaseRepository<T> {
-  abstract create(object: Partial<T>): Promise<CreateResult<T>>
+  public abstract create(object: Partial<T>): Promise<CreateResult<T>>
 
-  abstract find(query: FilterQuery<T>): FindAllResult<T>
+  public abstract find(query: FilterQuery<T>): FindAllResult<T>
 
-  abstract findById(id: string): FindResult<T>
+  public abstract findById(id: string): FindResult<T>
 
-  abstract findByIdAndDelete(id: string): FindResult<T>
+  public abstract findByIdAndDelete(id: string): FindResult<T>
 
-  abstract findByIdAndUpdate(
+  public abstract findByIdAndUpdate(
     id: string,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
   ): FindResult<T>
 
-  abstract findOne(query: FilterQuery<T>): FindResult<T>
+  public abstract findOne(query: FilterQuery<T>): FindResult<T>
 
-  abstract findOneAndDelete(query: FilterQuery<T>): FindResult<T>
+  public abstract findOneAndDelete(query: FilterQuery<T>): FindResult<T>
 
-  abstract findOneAndUpdate(
+  public abstract findOneAndUpdate(
     query: FilterQuery<T>,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
   ): FindResult<T>
 
-  abstract updateMany(
+  public abstract updateMany(
     query: FilterQuery<T>,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
   ): UpdateResult<T>
 
-  abstract updateOne(
+  public abstract updateOne(
     query: FilterQuery<T>,
     object: UpdateWithAggregationPipeline | UpdateQuery<T>
   ): UpdateResult<T>
 
-  abstract deleteMany(query: FilterQuery<T>): DeleteResult<T>
+  public abstract deleteMany(query: FilterQuery<T>): DeleteResult<T>
 
-  abstract deleteOne(query: FilterQuery<T>): DeleteResult<T>
+  public abstract deleteOne(query: FilterQuery<T>): DeleteResult<T>
 }

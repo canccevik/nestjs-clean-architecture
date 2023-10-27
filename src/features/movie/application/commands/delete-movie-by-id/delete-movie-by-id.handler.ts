@@ -11,7 +11,7 @@ export class DeleteMovieByIdCommandHandler
     private readonly movieRepository: AbstractMovieRepository<MovieDocument>
   ) {}
 
-  async execute({ movieId }: DeleteMovieByIdCommand) {
+  public async execute({ movieId }: DeleteMovieByIdCommand): Promise<void> {
     await this.movieRepository.findByIdAndDelete(movieId)
   }
 }

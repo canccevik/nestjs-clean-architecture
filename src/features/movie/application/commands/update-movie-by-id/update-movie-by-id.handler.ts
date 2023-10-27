@@ -11,7 +11,10 @@ export class UpdateMovieByIdCommandHandler
     private readonly movieRepository: AbstractMovieRepository<MovieDocument>
   ) {}
 
-  async execute({ movieId, movie }: UpdateMovieByIdCommand) {
+  public async execute({
+    movieId,
+    movie
+  }: UpdateMovieByIdCommand): Promise<MovieDocument | null> {
     return this.movieRepository.findByIdAndUpdate(movieId, movie)
   }
 }

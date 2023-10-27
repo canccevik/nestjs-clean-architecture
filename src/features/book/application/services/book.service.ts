@@ -9,23 +9,26 @@ export class BookService {
     private readonly bookRepository: AbstractBookRepository<BookDocument>
   ) {}
 
-  async createBook(book: BookDTO) {
+  public async createBook(book: BookDTO): Promise<BookDocument> {
     return this.bookRepository.create(book)
   }
 
-  async getBooks() {
+  public async getBooks(): Promise<BookDocument[]> {
     return this.bookRepository.find({})
   }
 
-  async getBookById(bookId: string) {
+  public async getBookById(bookId: string): Promise<BookDocument | null> {
     return this.bookRepository.findById(bookId)
   }
 
-  async updateBookById(bookId: string, book: BookDTO) {
+  public async updateBookById(
+    bookId: string,
+    book: BookDTO
+  ): Promise<BookDocument | null> {
     return this.bookRepository.findByIdAndUpdate(bookId, book)
   }
 
-  async deleteBookById(bookId: string) {
+  public async deleteBookById(bookId: string): Promise<void> {
     await this.bookRepository.findByIdAndDelete(bookId)
   }
 }

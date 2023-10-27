@@ -6,15 +6,15 @@ export class BookDTO {
   @ApiProperty()
   @IsNotEmpty()
   @Length(2, 30)
-  name!: string
+  public name!: string
 
   @ApiProperty()
   @IsNotEmpty()
   @IsEnum(BookCategory)
-  category!: string
+  public category!: string
 
   @ApiProperty()
   @IsNotEmpty()
   @Length(2, 30)
-  author!: string
+  public author!: string
 }

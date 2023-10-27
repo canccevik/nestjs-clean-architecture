@@ -6,15 +6,15 @@ export class MovieDTO {
   @ApiProperty()
   @IsNotEmpty()
   @Length(2, 30)
-  name!: string
+  public name!: string
 
   @ApiProperty()
   @IsNotEmpty()
   @IsEnum(MovieCategory)
-  category!: string
+  public category!: string
 
   @ApiProperty()
   @IsNotEmpty()
   @Length(2, 30)
-  director!: string
+  public director!: string
 }

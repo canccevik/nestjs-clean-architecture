@@ -11,7 +11,7 @@ export class CreateMovieCommandHandler
     private readonly movieRepository: AbstractMovieRepository<MovieDocument>
   ) {}
 
-  async execute({ movie }: CreateMovieCommand) {
+  public async execute({ movie }: CreateMovieCommand): Promise<MovieDocument> {
     return this.movieRepository.create(movie)
   }
 }

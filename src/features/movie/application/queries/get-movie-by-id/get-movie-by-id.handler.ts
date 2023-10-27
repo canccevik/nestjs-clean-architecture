@@ -11,7 +11,9 @@ export class GetMovieByIdQueryHandler
     private readonly movieRepository: AbstractMovieRepository<MovieDocument>
   ) {}
 
-  async execute({ movieId }: GetMovieByIdQuery) {
+  public async execute({
+    movieId
+  }: GetMovieByIdQuery): Promise<MovieDocument | null> {
     return this.movieRepository.findById(movieId)
   }
 }

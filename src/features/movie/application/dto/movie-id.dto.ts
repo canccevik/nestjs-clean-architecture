@@ -7,5 +7,5 @@ export class MovieIdDTO {
   @IsNotEmpty()
   @IsMongoId()
   @Validate(IsMovieExist)
-  movieId!: string
+  public movieId!: string
 }

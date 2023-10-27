@@ -5,7 +5,7 @@ import { setupSwagger } from './setup-swagger'
 import { setupApp } from './setup-app'
 import { Config, ENV } from '@common/infrastructure/configurations/index.config'
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
   const config = app.get<Config>(ENV)

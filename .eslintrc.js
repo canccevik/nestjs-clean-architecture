@@ -27,5 +27,22 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off'
-  }
+  },
+  overrides: [
+    {
+      files: ['*.ts'],
+      rules: {
+        '@typescript-eslint/explicit-member-accessibility': [
+          'error',
+          {
+            accessibility: 'explicit',
+            overrides: {
+              constructors: 'no-public'
+            }
+          }
+        ],
+        '@typescript-eslint/explicit-function-return-type': ['error']
+      }
+    }
+  ]
 }

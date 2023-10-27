@@ -22,7 +22,7 @@ export class ResponseMappingInterceptor<T>
 {
   constructor(private readonly reflector: Reflector) {}
 
-  intercept(
+  public intercept(
     context: ExecutionContext,
     next: CallHandler
   ): Observable<Payload<T>> {
@@ -31,7 +31,10 @@ export class ResponseMappingInterceptor<T>
       .pipe(map((payload) => this.transformResponse(payload, context)))
   }
 
-  transformResponse<T>(payload: T, context: ExecutionContext): Payload<T> {
+  public transformResponse<T>(
+    payload: T,
+    context: ExecutionContext
+  ): Payload<T> {
     const handler = context.getHandler()
     const message = this.reflector.get(Message, handler)
     const { statusCode } = context.switchToHttp().getResponse<Response>()

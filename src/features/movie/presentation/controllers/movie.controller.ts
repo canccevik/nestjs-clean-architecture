@@ -6,6 +6,7 @@ import { MovieIdDTO } from '@movie/application/dto/movie-id.dto'
 import { MovieDTO } from '@movie/application/dto/movie.dto'
 import { GetMovieByIdQuery } from '@movie/application/queries/get-movie-by-id/get-movie-by-id.query'
 import { GetMoviesQuery } from '@movie/application/queries/get-movies/get-movies.query'
+import { MovieDocument } from '@movie/domain/models/movie.model'
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { CommandBus, QueryBus } from '@nestjs/cqrs'
 import { ApiTags } from '@nestjs/swagger'
@@ -20,28 +21,32 @@ export class MovieController {
 
   @Post()
   @Message('Movie created successfully.')
-  async createMovie(@Body() createMovieDTO: MovieDTO) {
+  public async createMovie(
+    @Body() createMovieDTO: MovieDTO
+  ): Promise<MovieDocument> {
     return this.commandBus.execute(new CreateMovieCommand(createMovieDTO))
   }
 
   @Get()
   @Message('Movies fetched successfully.')
-  async getMovies() {
+  public async getMovies(): Promise<MovieDocument[] | null> {
     return this.queryBus.execute(new GetMoviesQuery())
   }
 
   @Get(':movieId')
   @Message('Movie fetched successfully.')
-  async getMovieById(@Param() params: MovieIdDTO) {
+  public async getMovieById(
+    @Param() params: MovieIdDTO
+  ): Promise<MovieDocument | null> {
     return this.queryBus.execute(new GetMovieByIdQuery(params.movieId))
   }
 
   @Put(':movieId')
   @Message('Movie updated successfully.')
-  async updateMovieById(
+  public async updateMovieById(
     @Param() params: MovieIdDTO,
     @Body() updateMovieDTO: MovieDTO
-  ) {
+  ): Promise<MovieDocument | null> {
     return this.commandBus.execute(
       new UpdateMovieByIdCommand(params.movieId, updateMovieDTO)
     )
@@ -49,7 +54,7 @@ export class MovieController {
 
   @Delete(':movieId')
   @Message('Movie deleted successfully.')
-  async deletMovieById(@Param() params: MovieIdDTO) {
+  public async deletMovieById(@Param() params: MovieIdDTO): Promise<void> {
     return this.commandBus.execute(new DeleteMovieByIdCommand(params.movieId))
   }
 }
